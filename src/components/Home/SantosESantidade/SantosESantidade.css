@@ -1,0 +1,49 @@
+.santos-section {
+  padding: 60px 20px;
+}
+
+.santos-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.santos-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.santos-left h2 {
+  font-weight: 900;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.santos-left p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  font-weight: 900;
+  padding: 10px 20px;
+  background: #FE9800;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.santos-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.santos-right img {
+  width: 58%;
+  border-radius: 12px;
+}

@@ -1,0 +1,62 @@
+.destaques-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #FFF8E8;
+}
+
+.destaques-section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.santo-card {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  border-radius: 25px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.santo-card:hover {
+  transform: translateY(-8px);
+}
+
+.santo-gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(180deg, rgba(255, 248, 232, 0) 0%, rgba(0, 0, 0, 0.4) 30%, #000 100%);
+  z-index: 1;
+}
+
+.santo-content {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  padding: 20px;
+  color: #FFF8E8;
+  text-align: center;
+}
+
+.santo-frase {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.santo-descricao {
+  font-size: 1rem;
+}

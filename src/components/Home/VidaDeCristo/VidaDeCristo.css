@@ -1,0 +1,46 @@
+.vida-section {
+    margin: 33px;
+}
+
+.vida-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap; /* Para responsividade */
+}
+
+.vida-left, .vida-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.vida-left h2 {
+    font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.vida-left p {
+    font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.vida-right img {
+  width: 58%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cta-button {
+    font-weight: 500;
+  padding: 10px 20px;
+    background: #FE9800;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}

@@ -1,0 +1,61 @@
+.sabedoria-section {
+  padding: 60px 20px;
+  background-color: #fff8e8;
+  text-align: center;
+}
+
+.sabedoria-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.noticia-card {
+  position: relative;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.noticia-card:hover {
+  transform: scale(1.02);
+}
+
+.noticia-card .overlay {
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff8e8;
+  position: static;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: background 0.3s;
+}
+
+.noticia-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.noticia-card p {
+  font-size: 1rem;
+  font-weight: 300;
+}
