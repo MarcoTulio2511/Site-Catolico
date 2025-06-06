@@ -1,0 +1,41 @@
+.santos-container {
+    background-color: #fdf5e6;
+    /* bege claro */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.santos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.santo-card {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.santo-nome {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    font-size: 1.7rem;
+    color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding: 98px 24px;
+    overflow: hidden;
+    white-space: normal;
+    /* Permite múltiplas linhas */
+    word-wrap: break-word;
+    /* Quebra palavra se necessário */
+    line-height: 1.3;
+}

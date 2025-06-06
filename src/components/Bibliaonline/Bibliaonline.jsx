@@ -2,15 +2,24 @@ import React, { useState, useEffect } from 'react';
 import './Bibliaonline.css';
 import { nomesLivrosVelhoTestamento, nomesLivrosNovoTestamento } from '../../utils/livrosBiblia';
 
+const versiculosCarrossel = [
+    "João 3:16 — Porque Deus amou tanto o mundo que deu o seu Filho único, para que todo o que nele crer não pereça, mas tenha a vida eterna",
+    "Salmos 23:1 — O Senhor é o meu pastor, nada me faltará.",
+    "Filipenses 4:13 — Posso todas as coisas naquele que me fortalece.",
+    "Provérbios 3:5 — Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento."
+];
+
 export default function Bibliaonline() {
     const [biblia, setBiblia] = useState([]);
-    const [aberto, setAberto] = useState(null); // 'vt' ou 'nt' aberto na sanfona
-    const [modalAberto, setModalAberto] = useState(false); // controle modal
-    const [livroAtual, setLivroAtual] = useState(null);
+    const [livroAtual, setLivroAtual] = useState('gn');
     const [capituloAtual, setCapituloAtual] = useState(1);
     const [versiculos, setVersiculos] = useState([]);
     const [busca, setBusca] = useState('');
     const [resultadoBusca, setResultadoBusca] = useState([]);
+    const [carrosselIndex, setCarrosselIndex] = useState(0);
+    const [modalAberto, setModalAberto] = useState(false);
+    const [livroModal, setLivroModal] = useState(null); // objeto livro completo aqui
+    const [dropdownAberto, setDropdownAberto] = useState({ at: false, nt: false });
 
     useEffect(() => {
         fetch('/biblia/acf.json')
@@ -20,8 +29,7 @@ export default function Bibliaonline() {
     }, []);
 
     useEffect(() => {
-        if (!biblia.length || !livroAtual) return;
-
+        if (biblia.length === 0) return;
         const livro = biblia.find(l => l.abbrev === livroAtual);
         if (livro && livro.chapters.length >= capituloAtual) {
             setVersiculos(livro.chapters[capituloAtual - 1]);
@@ -32,125 +40,121 @@ export default function Bibliaonline() {
         }
     }, [livroAtual, capituloAtual, biblia]);
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCarrosselIndex((prevIndex) => (prevIndex + 1) % versiculosCarrossel.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
+
     const handleBusca = (e) => {
         const texto = e.target.value;
         setBusca(texto);
-
         if (!texto.trim()) {
             setResultadoBusca([]);
             return;
         }
-
         const resultados = versiculos
             .map((v, i) => ({ texto: v, numero: i + 1 }))
             .filter(v => v.texto.toLowerCase().includes(texto.toLowerCase()));
-
         setResultadoBusca(resultados);
     };
 
-    // Quando clicar no livro, abre o modal e seleciona o livro
-    const abrirLivro = (abreviacao) => {
-        setLivroAtual(abreviacao);
-        setCapituloAtual(1);
-        setBusca('');
-        setResultadoBusca([]);
-        setModalAberto(true);
+    // **Abre o modal passando o objeto livro completo**
+    const abrirModal = (abreviacao) => {
+        const livro = biblia.find(l => l.abbrev === abreviacao);
+        if (livro) {
+            setLivroModal(livro);
+            setCapituloAtual(1);
+            setModalAberto(true);
+        }
     };
 
     const fecharModal = () => {
         setModalAberto(false);
-        setLivroAtual(null);
-        setCapituloAtual(1);
-        setVersiculos([]);
-        setBusca('');
-        setResultadoBusca([]);
+        setLivroModal(null);
     };
 
-    const livroSelecionado = biblia.find(l => l.abbrev === livroAtual);
+    // Troca de capítulo no modal
+    const trocarCapitulo = (e) => {
+        setCapituloAtual(Number(e.target.value));
+    };
 
     return (
         <div className="biblia-container">
-            <h1>Bíblia Online</h1>
 
-            <div className="accordion">
-                <div className="accordion-item">
-                    <button className="accordion-header" onClick={() => setAberto(aberto === 'vt' ? null : 'vt')}>
-                        📜 Antigo Testamento (46 livros) {aberto === 'vt' ? '⋀' : '⋁'}
-                    </button>
-                    {aberto === 'vt' && (
-                        <ul className="lista-livros">
-                            {Object.entries(nomesLivrosVelhoTestamento).map(([abreviacao, nome]) => (
-                                <li key={abreviacao}>
-                                    <button className="botao-livro" onClick={() => abrirLivro(abreviacao)}>
-                                        {nome}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-
-                <div className="accordion-item">
-                    <button className="accordion-header" onClick={() => setAberto(aberto === 'nt' ? null : 'nt')}>
-                        📜 Novo Testamento (27 livros) {aberto === 'nt' ? '⋀' : '⋁'}
-                    </button>
-                    {aberto === 'nt' && (
-                        <ul className="lista-livros">
-                            {Object.entries(nomesLivrosNovoTestamento).map(([abreviacao, nome]) => (
-                                <li key={abreviacao}>
-                                    <button className="botao-livro" onClick={() => abrirLivro(abreviacao)}>
-                                        {nome}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+            {/* Carrossel de versículos */}
+            <div className="carrossel-versiculos">
+                <p>{versiculosCarrossel[carrosselIndex]}</p>
             </div>
 
-            {/* Modal */}
-            {modalAberto && (
+            {/* Dropdown Antigo e Novo Testamento */}
+            <div className="dropdown-livros">
+                <div className="dropdown-secao" onClick={() => setDropdownAberto({ ...dropdownAberto, at: !dropdownAberto.at })}>
+                    <span>📜 Antigo Testamento ({Object.keys(nomesLivrosVelhoTestamento).length})</span>
+                    <span className="seta">{dropdownAberto.at ? '▲' : '▼'}</span>
+                </div>
+                {dropdownAberto.at && (
+                    <div className="livros-lista">
+                        {Object.entries(nomesLivrosVelhoTestamento).map(([abrev, nome]) => (
+                            <p key={abrev} className="livro-nome" onClick={() => abrirModal(abrev)}>
+                                {nome}
+                            </p>
+                        ))}
+                    </div>
+                )}
+
+                <div className="dropdown-secao" onClick={() => setDropdownAberto({ ...dropdownAberto, nt: !dropdownAberto.nt })}>
+                    <span>📖 Novo Testamento ({Object.keys(nomesLivrosNovoTestamento).length})</span>
+                    <span className="seta">{dropdownAberto.nt ? '▲' : '▼'}</span>
+                </div>
+                {dropdownAberto.nt && (
+                    <div className="livros-lista">
+                        {Object.entries(nomesLivrosNovoTestamento).map(([abrev, nome]) => (
+                            <p key={abrev} className="livro-nome" onClick={() => abrirModal(abrev)}>
+                                {nome}
+                            </p>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* Modal antigo funcional */}
+            {modalAberto && livroModal && (
                 <div className="modal-overlay" onClick={fecharModal}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="fechar-modal" onClick={fecharModal}>×</button>
-                        <h2>{(nomesLivrosVelhoTestamento[livroAtual] || nomesLivrosNovoTestamento[livroAtual]) || livroAtual.toUpperCase()}</h2>
+                        <h2>{livroModal.name} - Capítulo {capituloAtual}</h2>
 
-                        <div className="controle-selecao">
-                            <label>
-                                Capítulo:
-                                <select
-                                    value={capituloAtual}
-                                    onChange={e => setCapituloAtual(Number(e.target.value))}
-                                >
-                                    {livroSelecionado && livroSelecionado.chapters.map((_, i) => (
-                                        <option key={i + 1} value={i + 1}>{i + 1}</option>
-                                    ))}
-                                </select>
-                            </label>
-                        </div>
+                        {/* Select para trocar capítulo */}
+                        <label>
+                            Capítulo:{' '}
+                            <select value={capituloAtual} onChange={trocarCapitulo}>
+                                {livroModal.chapters.map((_, i) => (
+                                    <option key={i} value={i + 1}>
+                                        {i + 1}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
 
-                        <div className="busca">
-                            <input
-                                type="text"
-                                placeholder="Buscar texto no capítulo"
-                                value={busca}
-                                onChange={handleBusca}
-                            />
-                        </div>
-
-                        <div className="versiculos">
-                            {(resultadoBusca.length > 0
-                                ? resultadoBusca
-                                : versiculos.map((v, i) => ({ texto: v, numero: i + 1 }))
-                            ).map(({ texto, numero }) => (
-                                <p key={numero}>
-                                    <sup>{numero}</sup> {texto}
+                        {/* Versículos do capítulo */}
+                        <div className="modal-versiculos" style={{ maxHeight: '60vh', overflowY: 'auto', marginTop: '1rem' }}>
+                            {livroModal.chapters[capituloAtual - 1].map((verso, i) => (
+                                <p key={i}>
+                                    <sup>{i + 1}</sup> {verso}
                                 </p>
                             ))}
                         </div>
+
+                        <button onClick={fecharModal} style={{ marginTop: '1rem' }}>Fechar</button>
                     </div>
                 </div>
             )}
+
+            {/* Filtro normal */}
+
+
+
         </div>
     );
 }

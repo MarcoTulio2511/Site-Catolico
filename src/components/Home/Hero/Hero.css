@@ -29,7 +29,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.458); /* Leve escurecimento */
+  background-color: rgba(0, 0, 0, 0.458);
+  /* Leve escurecimento */
   z-index: 1;
 }
 
@@ -43,7 +44,8 @@
 
 /* Remover fundo escuro da frase (se você tiver isso): */
 .slide .overlay {
-  background: none; /* remover fundo */
+  background: none;
+  /* remover fundo */
   position: absolute;
   bottom: 20%;
   left: 10%;
@@ -72,7 +74,7 @@
   top: 50%;
   font-size: 2rem;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   cursor: pointer;
   z-index: 3;
@@ -102,6 +104,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
