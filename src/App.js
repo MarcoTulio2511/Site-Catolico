@@ -4,8 +4,10 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import VidadeCristo from './pages/VidadeCristo';
 import Santos from './pages/SantosESantidades';
+import SantoDetalhe from './components/SantoDetalhe/SantoDetalhe';
 import Biblia from './pages/Bibliaonline';
 import Contato from './pages/Contato';
+
 import Footer from './components/Footer';
 
 
@@ -19,6 +21,8 @@ function App() {
           <Route path="/SantosESantidades" element={<Santos />} />
           <Route path="/Bibliaonline" element={<Biblia />} />
           <Route path="/Contato" element={<Contato />} />
+          <Route path="/santo/:santoId" element={<SantoDetalhe />} />
+
         </Routes>
       </Layout>
     </Router>

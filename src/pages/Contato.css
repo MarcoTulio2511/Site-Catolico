@@ -1,0 +1,191 @@
+/* Cor base laranja */
+:root {
+    --orange-color: #f7a53c;
+    /* Defina uma variável para a cor laranja */
+    --light-orange-bg: #fdf5e6;
+    /* Cor de fundo creme */
+    --text-color: #333;
+    /* Cor de texto geral */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--light-orange-bg);
+    /* Aplica a cor de fundo clara */
+}
+
+.contato-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 60px 20px;
+    background-color: var(--light-orange-bg);
+    flex-wrap: wrap;
+    min-height: calc(100vh - 73px);
+    margin-top: 82px;
+}
+
+/* Estilo do formulário */
+.contato-form {
+    flex: 1;
+    /* Permite que o formulário cresça */
+    max-width: 558px;
+    /* Largura máxima do formulário para não ficar muito grande */
+    border: 2px solid var(--orange-color);
+    /* Borda laranja como na imagem */
+    border-radius: 20px;
+    /* Bordas mais arredondadas */
+    padding: 30px;
+    /* Preenchimento interno */
+    background-color: transparent;
+    /* Fundo transparente para o formulário */
+    box-shadow: none;
+    /* Remove qualquer sombra padrão se houver */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Espaço entre os grupos label/input */
+}
+
+.contato-form h1 {
+    /* Este título não está visível na imagem de referência, pode ser ocultado ou removido se não for necessário */
+    display: none;
+    /* Oculta o título "Entre em Contato" */
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.contato-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Espaçamento entre os elementos do formulário */
+}
+
+.contato-form label {
+    font-weight: 600;
+    /* Labels com fonte normal, não negrito */
+    color: var(--orange-color);
+    /* Cor laranja para os labels */
+    font-size: 1.1rem;
+    /* Tamanho da fonte dos labels */
+    margin-bottom: -10px;
+    /* Ajusta o espaçamento entre label e input */
+}
+
+.contato-form input,
+.contato-form textarea {
+    padding: 12px 15px;
+    border: 2px solid var(--orange-color);
+    border-radius: 31px;
+    font-size: 1rem;
+    background-color: transparent;
+    color: var(--text-color);
+    box-shadow: none;
+    font-weight: 500;
+}
+
+.contato-form input:focus,
+.contato-form textarea:focus {
+    outline: none;
+    /* Remove a borda de foco padrão */
+    border-color: var(--orange-color);
+    /* Mantém a cor da borda laranja ao focar */
+    box-shadow: 0 0 5px rgba(247, 165, 60, 0.5);
+    /* Leve sombra laranja ao focar */
+}
+
+.contato-form textarea {
+    resize: vertical;
+    /* Permite redimensionar apenas verticalmente */
+    min-height: 100px;
+    /* Altura mínima para a área de texto */
+}
+
+.contato-form button {
+    display: flex;
+    padding: 12px 25px;
+    background-color: var(--orange-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    align-self: center;
+    margin-top: 15px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 192px;
+}
+
+.contato-form button:hover {
+    background-color: #d88f30;
+    /* Um tom um pouco mais escuro de laranja no hover */
+}
+
+/* Estilo do logo */
+.contato-logo {
+    flex: 1;
+    /* Permite que o logo cresça */
+    max-width: 500px;
+    /* Largura máxima para o logo */
+    text-align: center;
+    display: flex;
+    /* Usar flexbox para centralizar a imagem dentro do seu container */
+    justify-content: center;
+    align-items: center;
+}
+
+.contato-logo img {
+    width: 100%;
+    max-width: 380px;
+    /* Ajuste para o tamanho da sua imagem de logo, como na imagem de referência */
+    height: auto;
+    display: block;
+    /* Remove o espaço extra abaixo da imagem */
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .contato-container {
+        flex-direction: column;
+        /* Empilha os elementos em telas menores */
+        gap: 30px;
+        /* Reduz o espaçamento */
+        padding: 40px 15px;
+    }
+
+    .contato-form,
+    .contato-logo {
+        max-width: 100%;
+        /* Ocupa a largura total */
+    }
+
+    .contato-form {
+        padding: 25px;
+    }
+
+    .contato-logo img {
+        max-width: 300px;
+        /* Ajuste o tamanho do logo para telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .contato-form {
+        padding: 20px;
+    }
+
+    .contato-form label {
+        font-size: 1rem;
+    }
+
+    .contato-form input,
+    .contato-form textarea {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+}

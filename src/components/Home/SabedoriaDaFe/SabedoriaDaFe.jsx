@@ -32,7 +32,7 @@ const SabedoriaDaFe = () => {
   return (
     <section className="sabedoria-section">
       <h2>Sabedoria da Fé</h2>
-            <p>Aprofunde seus conhecimentos com reflexões espirituais, ensinamentos teológicos e artigos que fortalecem a fé. Encontre respostas para suas dúvidas e descubra novas formas de viver o Evangelho no dia a dia.</p>
+      <p>Aprofunde seus conhecimentos com reflexões espirituais, ensinamentos teológicos e artigos que fortalecem a fé. <br />Encontre respostas para suas dúvidas e descubra novas formas de viver o Evangelho no dia a dia.</p>
       <div className="noticias-grid">
         {noticias.map((noticia, index) => (
           <a

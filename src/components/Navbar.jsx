@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Navbar.css'; // vamos criar o CSS separado
+import './Navbar.css';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,7 +8,6 @@ function Navbar() {
 
   return (
     <nav className="navbar-container">
-      {/* Logo esquerda */}
       <div className="navbar-logo">
         <img
           src="/img/logo_principal.svg"
@@ -17,7 +16,6 @@ function Navbar() {
         />
       </div>
 
-      {/* Barra de pesquisa centralizada */}
       <div className="navbar-search">
         <input
           type="search"
@@ -26,7 +24,6 @@ function Navbar() {
         />
       </div>
 
-      {/* Menu hambúrguer direita */}
       <div className="navbar-menu">
         <button
           className={`hamburger-btn ${menuOpen ? 'open' : ''}`}
@@ -39,7 +36,6 @@ function Navbar() {
           <span className="bar bottom"></span>
         </button>
 
-
         <section className={`menu-dropdown ${menuOpen ? 'show' : ''}`}>
           <div className="menu-list"> <a href="/">Home</a> </div>
           <div className="menu-list"> <a href="/VidadeCristo">Vida de Cristo</a> </div>
@@ -47,7 +43,6 @@ function Navbar() {
           <div className="menu-list"> <a href="/Bibliaonline">Bíblia Online</a> </div>
           <div className="menu-list"> <a href="/Contato">Contato</a> </div>
         </section>
-
       </div>
     </nav>
   );
