@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Bibliaonline.css';
 import { nomesLivrosVelhoTestamento, nomesLivrosNovoTestamento } from '../../utils/livrosBiblia';
+import { useLocation } from 'react-router-dom';
+
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 const versiculosCarrossel = [
     "João 3:16 — Porque Deus amou tanto o mundo que deu o seu Filho único, para que todo o que nele crer não pereça, mas tenha a vida eterna",
@@ -10,17 +15,20 @@ const versiculosCarrossel = [
 ];
 
 export default function Bibliaonline() {
+    const query = useQuery();
+    const livroParam = query.get('livro');
+    const capituloParam = query.get('capitulo');
+
     const [biblia, setBiblia] = useState([]);
     const [livroAtual, setLivroAtual] = useState('gn');
     const [capituloAtual, setCapituloAtual] = useState(1);
     const [versiculos, setVersiculos] = useState([]);
-    const [busca, setBusca] = useState('');
-    const [resultadoBusca, setResultadoBusca] = useState([]);
     const [carrosselIndex, setCarrosselIndex] = useState(0);
     const [modalAberto, setModalAberto] = useState(false);
-    const [livroModal, setLivroModal] = useState(null); // objeto livro completo aqui
+    const [livroModal, setLivroModal] = useState(null);
     const [dropdownAberto, setDropdownAberto] = useState({ at: false, nt: false });
 
+    // 🔥 Carregar arquivo JSON da Bíblia
     useEffect(() => {
         fetch('/biblia/acf.json')
             .then(res => res.json())
@@ -28,18 +36,7 @@ export default function Bibliaonline() {
             .catch(err => console.error('Erro ao carregar a bíblia:', err));
     }, []);
 
-    useEffect(() => {
-        if (biblia.length === 0) return;
-        const livro = biblia.find(l => l.abbrev === livroAtual);
-        if (livro && livro.chapters.length >= capituloAtual) {
-            setVersiculos(livro.chapters[capituloAtual - 1]);
-            setResultadoBusca([]);
-            setBusca('');
-        } else {
-            setVersiculos([]);
-        }
-    }, [livroAtual, capituloAtual, biblia]);
-
+    // 🔥 Carrossel de versículos
     useEffect(() => {
         const timer = setInterval(() => {
             setCarrosselIndex((prevIndex) => (prevIndex + 1) % versiculosCarrossel.length);
@@ -47,20 +44,31 @@ export default function Bibliaonline() {
         return () => clearInterval(timer);
     }, []);
 
-    const handleBusca = (e) => {
-        const texto = e.target.value;
-        setBusca(texto);
-        if (!texto.trim()) {
-            setResultadoBusca([]);
-            return;
+    // 🔥 Abrir automaticamente se tiver parâmetros na URL
+    useEffect(() => {
+        if (biblia.length === 0) return;
+        if (livroParam && capituloParam) {
+            const livro = biblia.find(l => l.abbrev === livroParam);
+            if (livro) {
+                setLivroModal(livro);
+                setCapituloAtual(Number(capituloParam));
+                setModalAberto(true);
+            }
         }
-        const resultados = versiculos
-            .map((v, i) => ({ texto: v, numero: i + 1 }))
-            .filter(v => v.texto.toLowerCase().includes(texto.toLowerCase()));
-        setResultadoBusca(resultados);
-    };
+    }, [biblia, livroParam, capituloParam]);
 
-    // **Abre o modal passando o objeto livro completo**
+    // 🔥 Atualizar versículos exibidos
+    useEffect(() => {
+        if (biblia.length === 0) return;
+        const livro = biblia.find(l => l.abbrev === livroAtual);
+        if (livro && livro.chapters.length >= capituloAtual) {
+            setVersiculos(livro.chapters[capituloAtual - 1]);
+        } else {
+            setVersiculos([]);
+        }
+    }, [livroAtual, capituloAtual, biblia]);
+
+    // 🔥 Abre o modal com o livro escolhido
     const abrirModal = (abreviacao) => {
         const livro = biblia.find(l => l.abbrev === abreviacao);
         if (livro) {
@@ -75,7 +83,6 @@ export default function Bibliaonline() {
         setLivroModal(null);
     };
 
-    // Troca de capítulo no modal
     const trocarCapitulo = (e) => {
         setCapituloAtual(Number(e.target.value));
     };
@@ -119,13 +126,12 @@ export default function Bibliaonline() {
                 )}
             </div>
 
-            {/* Modal antigo funcional */}
+            {/* Modal */}
             {modalAberto && livroModal && (
                 <div className="modal-overlay" onClick={fecharModal}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>
                         <h2>{livroModal.name} - Capítulo {capituloAtual}</h2>
 
-                        {/* Select para trocar capítulo */}
                         <label>
                             Capítulo:{' '}
                             <select value={capituloAtual} onChange={trocarCapitulo}>
@@ -137,7 +143,6 @@ export default function Bibliaonline() {
                             </select>
                         </label>
 
-                        {/* Versículos do capítulo */}
                         <div className="modal-versiculos" style={{ maxHeight: '60vh', overflowY: 'auto', marginTop: '1rem' }}>
                             {livroModal.chapters[capituloAtual - 1].map((verso, i) => (
                                 <p key={i}>
@@ -150,11 +155,6 @@ export default function Bibliaonline() {
                     </div>
                 </div>
             )}
-
-            {/* Filtro normal */}
-
-
-
         </div>
     );
 }

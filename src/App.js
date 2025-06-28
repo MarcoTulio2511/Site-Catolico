@@ -7,7 +7,7 @@ import Santos from './pages/SantosESantidades';
 import SantoDetalhe from './components/SantoDetalhe/SantoDetalhe';
 import Biblia from './pages/Bibliaonline';
 import Contato from './pages/Contato';
-
+import TesteFirebase from './components/TesteFirebase';
 import Footer from './components/Footer';
 
 
@@ -16,6 +16,7 @@ function App() {
     <Router>
       <Layout> {/* Layout com Navbar dentro */}
         <Routes>
+          <Route path="/teste" element={<TesteFirebase />} />
           <Route path="/" element={<Home />} />
           <Route path="/VidadeCristo" element={<VidadeCristo />} />
           <Route path="/SantosESantidades" element={<Santos />} />
