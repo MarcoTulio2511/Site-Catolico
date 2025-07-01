@@ -8,6 +8,14 @@ import SantoDetalhe from './components/SantoDetalhe/SantoDetalhe';
 import Biblia from './pages/Bibliaonline';
 import Contato from './pages/Contato';
 import TesteFirebase from './components/TesteFirebase';
+import CatequeseOnline from './pages/CatequeseOnline';
+import { LoginCatequista } from './components/CatequeseOnline/LoginCatequista';
+import { LoginAluno } from './components/CatequeseOnline/LoginAluno';
+import { DashboardCatequista } from './components/CatequeseOnline/DashboardCatequista';
+import { DashboardAluno } from './components/CatequeseOnline/DashboardAluno';
+import { VideoCallRoom } from './components/CatequeseOnline/VideoCallRoom';
+
+
 import Footer from './components/Footer';
 
 
@@ -22,7 +30,13 @@ function App() {
           <Route path="/SantosESantidades" element={<Santos />} />
           <Route path="/Bibliaonline" element={<Biblia />} />
           <Route path="/Contato" element={<Contato />} />
-          <Route path="/santo/:santoId" element={<SantoDetalhe />} />
+          <Route path="/SantoDetalhe/:santoId" element={<SantoDetalhe />} />
+          <Route path="/CatequeseOnline" element={<CatequeseOnline />} />
+          <Route path="/LoginCatequista" element={<LoginCatequista />} />
+          <Route path="/LoginAluno" element={<LoginAluno />} />
+          <Route path="/DashboardCatequista" element={<DashboardCatequista />} />
+          <Route path="/DashboardAluno" element={<DashboardAluno />} />
+          <Route path="/Sala/:salaId" element={<VideoCallRoom />} />
 
         </Routes>
       </Layout>

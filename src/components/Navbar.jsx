@@ -3,12 +3,12 @@ import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import { nomesLivrosVelhoTestamento, nomesLivrosNovoTestamento } from '../utils/livrosBiblia';
 import { santosData } from './Santos/Santos';
-import bibliaCompleta from '/biblia/acf.json'; // 🔥 Acesso a todos os versículos
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [busca, setBusca] = useState('');
   const [resultados, setResultados] = useState([]);
+  const [bibliaCompleta, setBibliaCompleta] = useState([]);
   const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -18,6 +18,9 @@ function Navbar() {
     { nome: 'Vida de Cristo', path: '/VidadeCristo' },
     { nome: 'Santos e Santidade', path: '/SantosESantidades' },
     { nome: 'Bíblia Online', path: '/Bibliaonline' },
+    { nome: 'Catequese Online', path: '/CatequeseOnline' },
+    { nome: 'Login do Catequista', path: '/LoginCatequista' },
+    { nome: 'Login do Aluno', path: '/LoginAluno' },
     { nome: 'Contato', path: '/Contato' },
   ];
 
@@ -26,7 +29,15 @@ function Navbar() {
     ...Object.entries(nomesLivrosNovoTestamento).map(([abrev, nome]) => ({ nome, abrev })),
   ];
 
-  // 🔍 Efeito para atualizar resultados de pesquisa
+  // 🔥 Carrega a Bíblia completa via fetch (porque está na pasta public/)
+  useEffect(() => {
+    fetch('/biblia/acf.json')
+      .then(res => res.json())
+      .then(data => setBibliaCompleta(data))
+      .catch(err => console.error("Erro ao carregar a Bíblia:", err));
+  }, []);
+
+  // 🔍 Atualiza os resultados da busca
   useEffect(() => {
     if (busca.trim() === '') {
       setResultados([]);
@@ -35,20 +46,21 @@ function Navbar() {
 
     const termo = busca.toLowerCase();
 
-    // 🔸 Busca nas páginas
+    // 🔹 Busca em páginas
     const resultadoPaginas = paginas
       .filter(p => p.nome.toLowerCase().includes(termo))
       .map(p => ({ nome: p.nome, path: p.path }));
 
-    // 🔸 Busca nos santos
+    // 🔹 Busca em santos
     const resultadoSantos = santosData
       .filter(s => s.nome.toLowerCase().includes(termo))
       .map(s => ({
         nome: s.nome,
-        path: `/SantoDetalhe/${s.nome.replace(/\s+/g, '-')}`
+        path: `/SantoDetalhe/${s.id}`
       }));
 
-    // 🔸 Busca nos livros da Bíblia por nome e capítulo
+
+    // 🔹 Busca em livros da Bíblia
     const resultadoLivros = livrosBiblia
       .map(livro => {
         const regex = new RegExp(`^${livro.nome.toLowerCase()}\\s*(\\d+)?$`);
@@ -64,9 +76,8 @@ function Navbar() {
       })
       .filter(Boolean);
 
-    // 🔸 Busca nos versículos da Bíblia por conteúdo
+    // 🔹 Busca em versículos por conteúdo textual
     const resultadoVersiculos = [];
-
     bibliaCompleta.forEach(livro => {
       livro.chapters.forEach((capitulo, capIndex) => {
         capitulo.forEach((verso, versoIndex) => {
@@ -86,7 +97,7 @@ function Navbar() {
       ...resultadoLivros,
       ...resultadoVersiculos,
     ]);
-  }, [busca]);
+  }, [busca, bibliaCompleta]);
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -98,12 +109,15 @@ function Navbar() {
   return (
     <nav className="navbar-container">
       <div className="navbar-logo">
-        <img
-          src="/img/logo_principal.svg"
-          alt="Logo"
-          className="logo-img"
-        />
+        <a href="/">
+          <img
+            src="/img/logo_principal.svg"
+            alt="Logo"
+            className="logo-img"
+          />
+        </a>
       </div>
+
 
       <div className="navbar-search">
         <input

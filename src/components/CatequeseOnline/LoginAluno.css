@@ -1,0 +1,44 @@
+.login-aluno {
+    max-width: 400px;
+    margin: 5rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-aluno h2 {
+    margin-bottom: 1.5rem;
+    color: #2d3436;
+}
+
+.login-aluno input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.login-aluno button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #00a8ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.login-aluno button:hover {
+    background-color: #0091e6;
+}
+
+.login-aluno a {
+    display: block;
+    margin-top: 1rem;
+    color: #273c75;
+    text-decoration: none;
+}

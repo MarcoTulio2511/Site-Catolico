@@ -59,7 +59,7 @@ export default function Santos() {
             <h1>Santos e Santidades</h1>
             <div className="santos-grid">
                 {santosData.map((santo) => (
-                    <Link to={`/santo/${santo.id}`} key={santo.id}>
+                    <Link to={`/SantoDetalhe/${santo.id}`} key={santo.id}>
                         <div
                             className="santo-card"
                             style={{ backgroundImage: `url(${santo.imagem})` }}

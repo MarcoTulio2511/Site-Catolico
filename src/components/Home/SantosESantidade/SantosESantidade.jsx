@@ -1,13 +1,13 @@
 import React from 'react';
-import './SantosESantidade.css'; // Correção do nome do arquivo
+import './SantosESantidade.css';
 
 
 const SantosESantidade = () => {
   return (
     <section className="santos-section">
       <div className="santos-container">
-                <div className="santos-right">
-            <img src="img/Santos catolicos 2_0.png" alt="Santo" />;
+        <div className="santos-right">
+          <img src="img/Santos catolicos 2_0.png" alt="Santo" />;
         </div>
         <div className="santos-left">
           <h2>Santos e Santidade</h2>

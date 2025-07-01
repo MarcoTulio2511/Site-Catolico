@@ -31,11 +31,11 @@ const DestaquesSantos = () => {
           <div className="santo-card" key={index} style={{ backgroundImage: `url(${santo.imagem})` }}>
             <div className="santo-gradient" />
             <div className="santo-content">
-              <blockquote className="santo-frase">{santo.frase}</blockquote>
-              <p className="santo-descricao">{santo.descricao}</p>
+              <blockquote className="santo-frase1">{santo.frase}</blockquote>
+              <p className="santo-descricao1">{santo.descricao}</p>
             </div>
           </div>
-        ))} 
+        ))}
       </div>
     </section>
   );
