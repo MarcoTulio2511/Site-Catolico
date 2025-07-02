@@ -104,13 +104,18 @@ export function DashboardCatequista() {
         <div className="dashboard-catequista">
             <header className="cabecalho-dashboard">
                 <h1>Bem-vindo(a), Catequista</h1>
-                <button onClick={sair} className="btn-sair">Sair</button>
+                <div className="pagina-dashboard-catequista">
+                    <button onClick={sair} className="btn-sair">Sair</button>
+                </div>
             </header>
+
 
             <section className="criar-sala">
                 <h2>Criar nova sala de catequese</h2>
                 <input type="text" placeholder="Nome da sala (ex: Turma A)" value={nomeSala} onChange={e => setNomeSala(e.target.value)} />
-                <button onClick={criarSala}>Criar Sala</button>
+                <div className="pagina-dashboard-catequista">
+                    <button onClick={criarSala}>Criar Sala</button>
+                </div>
                 {msg && <p className="mensagem">{msg}</p>}
             </section>
 

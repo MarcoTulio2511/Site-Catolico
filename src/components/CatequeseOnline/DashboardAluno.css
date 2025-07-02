@@ -4,7 +4,6 @@
     margin: auto;
     color: #333;
     margin-top: 118px;
-
 }
 
 .dashboard-aluno h1 {
@@ -24,6 +23,7 @@
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .card-sala {
@@ -34,16 +34,55 @@ ul {
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 8px;
+    flex-wrap: wrap;
+    /* permite quebra em telas pequenas */
+    gap: 1rem;
 }
 
-.botao-entrar {
-    background: #27ae60;
+.botao-entrar,
+.btn-sair {
+    background-color: orange;
+    border-radius: 10px;
     color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 8px;
+    padding: 6.9px 20px;
+    border: none;
+    font-weight: 600;
+    transition: background 0.3s;
 }
 
-.botao-entrar:hover {
-    background: #219150;
+.botao-entrar:hover,
+.btn-sair:hover {
+    background-color: darkorange;
+}
+
+.btn-sair {
+    margin-bottom: 15px;
+    padding: 6.9px 40px;
+}
+
+/* 🌐 Responsividade */
+@media (max-width: 600px) {
+    .dashboard-aluno {
+        padding: 1rem;
+    }
+
+    .card-sala {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .botao-entrar,
+    .btn-sair {
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-sair {
+        padding: 10px 0;
+    }
+
+    .salas-disponiveis,
+    .info-adicional {
+        padding: 1rem;
+    }
 }
