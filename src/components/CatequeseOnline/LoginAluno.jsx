@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword
+} from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import './LoginAluno.css';
 
 export function LoginAluno() {
@@ -13,22 +16,26 @@ export function LoginAluno() {
     const navigate = useNavigate();
 
     const handleAuth = async () => {
-        setErro(''); // limpa erro antes de tentar autenticar
+        setErro('');
         try {
             if (ehNovo) {
-                // Criação da conta
                 const cred = await createUserWithEmailAndPassword(auth, email, senha);
-                // Salvar dados extras no Firestore
                 await setDoc(doc(db, "usuarios", cred.user.uid), {
                     email,
                     tipo: "aluno",
                     criadoEm: new Date()
                 });
+                navigate("/DashboardAluno");
             } else {
-                // Login existente
-                await signInWithEmailAndPassword(auth, email, senha);
+                const cred = await signInWithEmailAndPassword(auth, email, senha);
+                const userDoc = await getDoc(doc(db, "usuarios", cred.user.uid));
+
+                if (userDoc.exists() && userDoc.data().tipo === "aluno") {
+                    navigate("/DashboardAluno");
+                } else {
+                    setErro("Você não tem permissão para acessar como aluno.");
+                }
             }
-            navigate("/DashboardAluno"); // redireciona após login ou cadastro
         } catch (err) {
             setErro("Erro: " + err.message);
         }

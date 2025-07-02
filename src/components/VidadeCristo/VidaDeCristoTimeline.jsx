@@ -62,35 +62,37 @@ const etapas = [
 
 function VidaDeCristoTimeline() {
     return (
-        <div className="vida-container">
-            {etapas.map((etapa, index) => (
-                <div key={index} className="etapa">
-                    <div className="etapa-titulo">
-                        <span className="periodo">{etapa.periodo}</span>
-                        <h2 className="titulo">{etapa.titulo}</h2>
-                        <div className="linha-horizontal"></div>
-                    </div>
-
-                    <div className="etapa-conteudo">
-                        <div className="etapa-img">
-                            <img src={etapa.imagem} alt={etapa.titulo} />
+        <div className="vida-cristo-wrapper">
+            <div className="vida-container">
+                {etapas.map((etapa, index) => (
+                    <div key={index} className="etapa">
+                        <div className="etapa-titulo">
+                            <span className="periodo">{etapa.periodo}</span>
+                            <h2 className="titulo">{etapa.titulo}</h2>
+                            <div className="linha-horizontal"></div>
                         </div>
-                        <div className="etapa-resumo">
-                            <p>{etapa.resumo}</p>
+
+                        <div className="etapa-conteudo">
+                            <div className="etapa-img">
+                                <img src={etapa.imagem} alt={etapa.titulo} />
+                            </div>
+                            <div className="etapa-resumo">
+                                <p>{etapa.resumo}</p>
+                            </div>
+                        </div>
+
+                        <div className="etapa-footer">
+                            <span className="frase">{etapa.frase}</span>
+                            <a href={etapa.link} target="_blank" rel="noreferrer" className="btn-lermais">
+                                Ler mais
+                            </a>
                         </div>
                     </div>
-
-                    <div className="etapa-footer">
-                        <span className="frase">{etapa.frase}</span>
-                        <a href={etapa.link} target="_blank" rel="noreferrer" className="btn-lermais">
-                            Ler mais
-                        </a>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
-
     );
 }
+
 
 export default VidaDeCristoTimeline;

@@ -1,18 +1,23 @@
-.vida-container {
+.vida-cristo-wrapper * {
+    all: unset;
+    all: revert;
+    box-sizing: border-box;
+}
+
+.vida-cristo-wrapper .vida-container {
     padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 2rem;
     flex-wrap: wrap;
 }
 
-.etapa {
+.vida-cristo-wrapper .etapa {
     margin-bottom: 4rem;
 }
 
-.titulo {
+.vida-cristo-wrapper .titulo {
     white-space: pre-line;
     text-align: center;
     font-weight: 800;
@@ -22,15 +27,15 @@
     margin-top: 20px;
 }
 
-.etapa-titulo {
+.vida-cristo-wrapper .etapa-titulo {
     font-weight: 900;
     text-align: center;
     position: relative;
     margin-bottom: 1.5rem;
 }
 
-.periodo {
-    font-family: 'Josefin Sans';
+.vida-cristo-wrapper .periodo {
+    font-family: 'Josefin Sans', sans-serif;
     text-align: center;
     font-weight: 700;
     font-size: 40px;
@@ -38,21 +43,20 @@
     margin-bottom: 4px;
 }
 
-.linha-horizontal::before {
+.vida-cristo-wrapper .linha-horizontal::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%);
     width: 35%;
-    /* ajuste conforme necessário */
     height: 5px;
     background: #FE9800;
     z-index: 1;
     margin-top: -5px;
 }
 
-.etapa-conteudo {
+.vida-cristo-wrapper .etapa-conteudo {
     display: flex;
     gap: 5rem;
     align-items: center;
@@ -60,23 +64,21 @@
     margin-right: 45px;
 }
 
-.etapa-img img {
+.vida-cristo-wrapper .etapa-img img {
     width: 200px;
     height: auto;
     border-radius: 8px;
     margin-left: 50px;
 }
 
-
-
-.etapa-resumo p {
+.vida-cristo-wrapper .etapa-resumo p {
     font-size: 19px;
     margin: 0.5rem 0;
     color: #FE9800;
     margin-right: 50px;
 }
 
-.etapa-footer {
+.vida-cristo-wrapper .etapa-footer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,24 +86,24 @@
     margin-top: 1.5rem;
 }
 
-.frase {
+.vida-cristo-wrapper .frase {
     color: #FE9800;
     border: 2px solid orange;
     padding: 0.5rem 1rem;
     border-radius: 30px;
-    font-style: none;
     font-size: 20px;
 }
 
-.btn-lermais {
+.vida-cristo-wrapper .btn-lermais {
     background-color: orange;
     color: white;
     padding: 0.5rem 4rem;
     border-radius: 10px;
     text-decoration: none;
     transition: background 0.3s;
+    display: inline-block;
 }
 
-.btn-lermais:hover {
+.vida-cristo-wrapper .btn-lermais:hover {
     background-color: darkorange;
 }
