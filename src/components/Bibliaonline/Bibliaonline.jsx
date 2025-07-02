@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Bibliaonline.css';
 import { nomesLivrosVelhoTestamento, nomesLivrosNovoTestamento } from '../../utils/livrosBiblia';
 import { useLocation } from 'react-router-dom';
@@ -18,6 +18,7 @@ export default function Bibliaonline() {
     const query = useQuery();
     const livroParam = query.get('livro');
     const capituloParam = query.get('capitulo');
+    const versiculoParam = query.get('versiculo'); // novo parâmetro para versículo destacado
 
     const [biblia, setBiblia] = useState([]);
     const [livroAtual, setLivroAtual] = useState('gn');
@@ -28,7 +29,10 @@ export default function Bibliaonline() {
     const [livroModal, setLivroModal] = useState(null);
     const [dropdownAberto, setDropdownAberto] = useState({ at: false, nt: false });
 
-    // 🔥 Carregar arquivo JSON da Bíblia
+    // Para scroll e foco no versículo destacado
+    const versiculoRefs = useRef([]);
+
+    // Carregar arquivo JSON da Bíblia
     useEffect(() => {
         fetch('/biblia/acf.json')
             .then(res => res.json())
@@ -36,7 +40,7 @@ export default function Bibliaonline() {
             .catch(err => console.error('Erro ao carregar a bíblia:', err));
     }, []);
 
-    // 🔥 Carrossel de versículos
+    // Carrossel de versículos
     useEffect(() => {
         const timer = setInterval(() => {
             setCarrosselIndex((prevIndex) => (prevIndex + 1) % versiculosCarrossel.length);
@@ -44,20 +48,21 @@ export default function Bibliaonline() {
         return () => clearInterval(timer);
     }, []);
 
-    // 🔥 Abrir automaticamente se tiver parâmetros na URL
+    // Abrir automaticamente modal com params URL
     useEffect(() => {
         if (biblia.length === 0) return;
         if (livroParam && capituloParam) {
             const livro = biblia.find(l => l.abbrev === livroParam);
             if (livro) {
                 setLivroModal(livro);
+                setLivroAtual(livroParam);
                 setCapituloAtual(Number(capituloParam));
                 setModalAberto(true);
             }
         }
     }, [biblia, livroParam, capituloParam]);
 
-    // 🔥 Atualizar versículos exibidos
+    // Atualizar versículos exibidos
     useEffect(() => {
         if (biblia.length === 0) return;
         const livro = biblia.find(l => l.abbrev === livroAtual);
@@ -68,11 +73,23 @@ export default function Bibliaonline() {
         }
     }, [livroAtual, capituloAtual, biblia]);
 
-    // 🔥 Abre o modal com o livro escolhido
+    // Após versículos renderizados, faz scroll para versículo destacado
+    useEffect(() => {
+        if (!modalAberto) return;
+        if (!versiculoParam) return;
+
+        const idx = Number(versiculoParam) - 1;
+        if (versiculoRefs.current[idx]) {
+            versiculoRefs.current[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, [modalAberto, versiculoParam, versiculos]);
+
+    // Abre o modal com o livro escolhido, resetando versiculoParam
     const abrirModal = (abreviacao) => {
         const livro = biblia.find(l => l.abbrev === abreviacao);
         if (livro) {
             setLivroModal(livro);
+            setLivroAtual(abreviacao);
             setCapituloAtual(1);
             setModalAberto(true);
         }
@@ -144,8 +161,12 @@ export default function Bibliaonline() {
                         </label>
 
                         <div className="modal-versiculos" style={{ maxHeight: '60vh', overflowY: 'auto', marginTop: '1rem' }}>
-                            {livroModal.chapters[capituloAtual - 1].map((verso, i) => (
-                                <p key={i}>
+                            {versiculos.map((verso, i) => (
+                                <p
+                                    key={i}
+                                    ref={el => (versiculoRefs.current[i] = el)}
+                                    className={versiculoParam && (i + 1) === Number(versiculoParam) ? 'versiculo-destaque' : ''}
+                                >
                                     <sup>{i + 1}</sup> {verso}
                                 </p>
                             ))}

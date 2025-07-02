@@ -91,6 +91,25 @@
   z-index: 10;
 }
 
+.hamburger-btn:focus,
+.hamburger-btn:hover,
+.hamburger-btn:active {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Também prevenir efeito escuro nos traços (linhas do ícone) */
+.hamburger-btn .bar {
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover .bar {
+  background-color: white;
+  /* evita escurecimento no hover */
+}
+
 .bar {
   width: 100%;
   height: 3px;
@@ -124,7 +143,7 @@ Agora está certo: top desce (positivo) e bottom sobe (negativo). */
   position: absolute;
   top: 100%;
   right: 0;
-  width: 200px;
+  width: 278px;
   overflow: hidden;
   clip-path: inset(10% 50% 90% 50% round 10px);
   /* 🔥 Fecha o menu por padrão */
@@ -145,6 +164,17 @@ Agora está certo: top desce (positivo) e bottom sobe (negativo). */
   opacity: 0;
   transform: translateY(30px);
   transition: transform 0.4s, opacity 0.4s;
+}
+
+.menu-list a {
+  color: #ffa500;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu-list a:last-child {
+  border-bottom: none;
+  /* Remove a borda inferior do último link */
 }
 
 .menu-list:hover {
@@ -177,6 +207,18 @@ Agora está certo: top desce (positivo) e bottom sobe (negativo). */
   transition-delay: 1s;
 }
 
+.menu-dropdown.show .menu-list:nth-child(6) {
+  transition-delay: 1.15s;
+}
+
+.menu-dropdown.show .menu-list:nth-child(7) {
+  transition-delay: 1.3s;
+}
+
+.menu-dropdown.show .menu-list:nth-child(8) {
+  transition-delay: 1.45s;
+}
+
 /* 🔍 Estilo da barra de pesquisa dropdown */
 .search-dropdown {
   position: absolute;
@@ -189,7 +231,7 @@ Agora está certo: top desce (positivo) e bottom sobe (negativo). */
   max-height: 300px;
   overflow-y: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(7, 7, 7, 0.2);
   z-index: 1000;
 }
 

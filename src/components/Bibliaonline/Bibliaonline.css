@@ -11,6 +11,15 @@
     color: #FF9900;
 }
 
+.versiculo-destaque {
+    background-color: #fffbcc;
+    /* amarelo claro */
+    border-left: 4px solid #f7d14f;
+    padding-left: 8px;
+    transition: background-color 0.5s ease;
+}
+
+
 .dropdown-livros {
     margin: 20px auto;
     width: 90%;
@@ -73,7 +82,7 @@
     transform: translate(-50%, -50%);
     background: white !important;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 19px !important;
     max-width: 90vw;
     max-height: 80vh;
     overflow-y: auto;
@@ -103,4 +112,12 @@
 
 .barra-pesquisa input:focus {
     border-color: darkorange;
+}
+
+.modal-content button {
+    color: #ffffff;
+    background-color: orange;
+    font-weight: 600;
+    width: 182px;
+    border-radius: 9px
 }

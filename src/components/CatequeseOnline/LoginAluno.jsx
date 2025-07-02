@@ -25,12 +25,20 @@ export function LoginAluno() {
                     tipo: "aluno",
                     criadoEm: new Date()
                 });
+
+                // 👉 Armazena o nome do usuário (pode ser o email ou buscar do Firestore futuramente)
+                localStorage.setItem('usuario_nome', email);
+
                 navigate("/DashboardAluno");
             } else {
                 const cred = await signInWithEmailAndPassword(auth, email, senha);
                 const userDoc = await getDoc(doc(db, "usuarios", cred.user.uid));
 
                 if (userDoc.exists() && userDoc.data().tipo === "aluno") {
+
+                    // 👉 Armazena o nome do usuário ao fazer login
+                    localStorage.setItem('usuario_nome', email);
+
                     navigate("/DashboardAluno");
                 } else {
                     setErro("Você não tem permissão para acessar como aluno.");
@@ -40,6 +48,7 @@ export function LoginAluno() {
             setErro("Erro: " + err.message);
         }
     };
+
 
     return (
         <div className="login-aluno">
