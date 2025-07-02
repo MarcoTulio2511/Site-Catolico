@@ -1,64 +1,96 @@
-/* Estilos para centralizar e ajustar a largura do contêiner principal da seção */
+/* Estilos principais da seção "vida" */
 .vida-section {
-  /* Define a largura máxima para o conteúdo centralizado */
   max-width: 1200px;
-  /* Ajuste este valor conforme o desejado para o conteúdo não ficar muito largo */
   margin: 33px auto;
-  /* Centraliza a seção horizontalmente e adiciona margem vertical */
   padding: 0 20px;
-  /* Adiciona um pouco de padding nas laterais para evitar que o conteúdo encoste nas bordas da tela em tamanhos menores */
   box-sizing: border-box;
-  /* Garante que padding não adicione largura extra */
 }
 
+/* Container interno com layout flexível */
 .vida-container {
   display: flex;
   align-items: center;
-  /* Alinha os itens verticalmente no centro */
   justify-content: space-between;
-  /* Coloca espaço entre os itens (texto e imagem) */
   gap: 2rem;
-  /* Espaçamento entre o texto e a imagem */
   padding: 2rem;
-  /* Padding interno do container */
-  /* Remove o background-color do .vida-container se o background da seção principal for o desejado */
-  /* background-color: #fdf5e6; */
-  /* Exemplo: se este for o background da imagem */
   flex-wrap: wrap;
-  /* Permite que os itens quebrem linha em telas menores */
 }
 
+/* Colunas do layout */
 .vida-left,
 .vida-right {
   flex: 1;
   min-width: 300px;
 }
 
+/* Títulos */
 .vida-left h2 {
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #FE9800;
 }
 
+/* Parágrafos */
 .vida-left p {
   font-weight: 500;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  color: #333;
+  line-height: 1.6;
 }
 
+/* Imagem do lado direito */
 .vida-right img {
-  width: 82%;
+  width: 100%;
+  max-width: 500px;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
+/* Botão de chamada para ação */
 .cta-button {
-  font-weight: 500;
-  padding: 10px 20px;
+  font-weight: 600;
+  padding: 10px 24px;
   background: #FE9800;
   color: #fff;
   border: none;
   border-radius: 30px;
   cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  background-color: #e57c00;
+}
+
+/* 📱 Responsividade para telas menores */
+@media (max-width: 768px) {
+  .vida-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .vida-left h2 {
+    font-size: 1.7rem;
+  }
+
+  .vida-left p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+
+  .vida-right img {
+    width: 90%;
+    margin-top: 20px;
+  }
 }

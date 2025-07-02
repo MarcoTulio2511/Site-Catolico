@@ -14,6 +14,12 @@ import { LoginAluno } from './components/CatequeseOnline/LoginAluno';
 import { DashboardCatequista } from './components/CatequeseOnline/DashboardCatequista';
 import { DashboardAluno } from './components/CatequeseOnline/DashboardAluno';
 import { VideoCallRoom } from './components/CatequeseOnline/VideoCallRoom';
+import CatequeseComo from './pages/CatequeseComo';
+import CatequeseCatequistas from './pages/CatequeseCatequistas';
+import CatequeseAlunos from './pages/CatequeseAlunos';
+import CatequeseFAQ from './pages/CatequeseFAQ';
+import ScrollToTop from './components/ScrollToTop';
+
 
 
 import Footer from './components/Footer';
@@ -22,6 +28,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* 👈 Aqui no topo da árvore */}
       <Layout> {/* Layout com Navbar dentro */}
         <Routes>
           <Route path="/teste" element={<TesteFirebase />} />
@@ -37,7 +44,10 @@ function App() {
           <Route path="/DashboardCatequista" element={<DashboardCatequista />} />
           <Route path="/DashboardAluno" element={<DashboardAluno />} />
           <Route path="/Sala/:salaId" element={<VideoCallRoom />} />
-
+          <Route path="/catequeseonline/como" element={<CatequeseComo />} />
+          <Route path="/catequeseonline/catequistas" element={<CatequeseCatequistas />} />
+          <Route path="/catequeseonline/alunos" element={<CatequeseAlunos />} />
+          <Route path="/catequeseonline/faq" element={<CatequeseFAQ />} />
         </Routes>
       </Layout>
     </Router>

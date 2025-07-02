@@ -6,6 +6,8 @@
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 118px;
+
 }
 
 .login-aluno h2 {
@@ -24,12 +26,13 @@
 .login-aluno button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #00a8ff;
+    background-color: #fe9800;
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 1rem;
     cursor: pointer;
+
 }
 
 .login-aluno button:hover {

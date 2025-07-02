@@ -6,30 +6,20 @@ import { santosData } from './Santos/Santos';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState(false);
   const [busca, setBusca] = useState('');
   const [resultados, setResultados] = useState([]);
   const [bibliaCompleta, setBibliaCompleta] = useState([]);
   const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-
-  const paginas = [
-    { nome: 'Home', path: '/' },
-    { nome: 'Vida de Cristo', path: '/VidadeCristo' },
-    { nome: 'Santos e Santidade', path: '/SantosESantidades' },
-    { nome: 'Bíblia Online', path: '/Bibliaonline' },
-    { nome: 'Catequese Online', path: '/CatequeseOnline' },
-    { nome: 'Login do Catequista', path: '/LoginCatequista' },
-    { nome: 'Login do Aluno', path: '/LoginAluno' },
-    { nome: 'Contato', path: '/Contato' },
-  ];
+  const toggleSubmenu = () => setSubmenuOpen(!submenuOpen);
 
   const livrosBiblia = [
     ...Object.entries(nomesLivrosVelhoTestamento).map(([abrev, nome]) => ({ nome, abrev })),
     ...Object.entries(nomesLivrosNovoTestamento).map(([abrev, nome]) => ({ nome, abrev })),
   ];
 
-  // 🔥 Carrega a Bíblia completa via fetch (porque está na pasta public/)
   useEffect(() => {
     fetch('/biblia/acf.json')
       .then(res => res.json())
@@ -37,7 +27,6 @@ function Navbar() {
       .catch(err => console.error("Erro ao carregar a Bíblia:", err));
   }, []);
 
-  // 🔍 Atualiza os resultados da busca
   useEffect(() => {
     if (busca.trim() === '') {
       setResultados([]);
@@ -46,12 +35,15 @@ function Navbar() {
 
     const termo = busca.toLowerCase();
 
-    // 🔹 Busca em páginas
-    const resultadoPaginas = paginas
-      .filter(p => p.nome.toLowerCase().includes(termo))
-      .map(p => ({ nome: p.nome, path: p.path }));
+    const resultadoPaginas = [
+      { nome: 'Home', path: '/' },
+      { nome: 'Vida de Cristo', path: '/VidadeCristo' },
+      { nome: 'Santos e Santidade', path: '/SantosESantidades' },
+      { nome: 'Bíblia Online', path: '/Bibliaonline' },
+      { nome: 'Catequese Online', path: '/CatequeseOnline' },
+      { nome: 'Contato', path: '/Contato' },
+    ].filter(p => p.nome.toLowerCase().includes(termo));
 
-    // 🔹 Busca em santos
     const resultadoSantos = santosData
       .filter(s => s.nome.toLowerCase().includes(termo))
       .map(s => ({
@@ -59,8 +51,6 @@ function Navbar() {
         path: `/SantoDetalhe/${s.id}`
       }));
 
-
-    // 🔹 Busca em livros da Bíblia
     const resultadoLivros = livrosBiblia
       .map(livro => {
         const regex = new RegExp(`^${livro.nome.toLowerCase()}\\s*(\\d+)?$`);
@@ -76,7 +66,6 @@ function Navbar() {
       })
       .filter(Boolean);
 
-    // 🔹 Busca em versículos por conteúdo textual
     const resultadoVersiculos = [];
     bibliaCompleta.forEach(livro => {
       livro.chapters.forEach((capitulo, capIndex) => {
@@ -104,6 +93,7 @@ function Navbar() {
     setBusca('');
     setResultados([]);
     setMenuOpen(false);
+    setSubmenuOpen(false);
   };
 
   return (
@@ -117,7 +107,6 @@ function Navbar() {
           />
         </a>
       </div>
-
 
       <div className="navbar-search">
         <input
@@ -155,11 +144,27 @@ function Navbar() {
         </button>
 
         <section className={`menu-dropdown ${menuOpen ? 'show' : ''}`}>
-          {paginas.map((pagina, index) => (
-            <div key={index} className="menu-list">
-              <a href={pagina.path}>{pagina.nome}</a>
+          <div className="menu-list"><a href="/">Home</a></div>
+          <div className="menu-list"><a href="/VidadeCristo">Vida de Cristo</a></div>
+          <div className="menu-list"><a href="/SantosESantidades">Santos e Santidade</a></div>
+          <div className="menu-list"><a href="/Bibliaonline">Bíblia Online</a></div>
+
+          <div className="menu-list submenu-toggle" onClick={toggleSubmenu}>
+            Catequese Online {submenuOpen ? '▲' : '▼'}
+          </div>
+
+          {submenuOpen && (
+            <div className="submenu">
+              <div className="submenu-item" onClick={() => handleNavigate('/CatequeseOnline')}>Painel Principal</div>
+              <div className="submenu-item" onClick={() => handleNavigate('/catequeseonline/como')}>Como Funciona</div>
+              <div className="submenu-item" onClick={() => handleNavigate('/catequeseonline/catequistas')}>Para Catequistas</div>
+              <div className="submenu-item" onClick={() => handleNavigate('/catequeseonline/alunos')}>Para Alunos</div>
+              <div className="submenu-item" onClick={() => handleNavigate('/catequeseonline/faq')}>Perguntas Frequentes</div>
             </div>
-          ))}
+          )}
+
+
+          <div className="menu-list"><a href="/Contato">Contato</a></div>
         </section>
       </div>
     </nav>

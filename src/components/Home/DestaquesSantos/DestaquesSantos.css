@@ -8,11 +8,13 @@
   font-size: 2rem;
   margin-bottom: 40px;
   font-weight: bold;
+  color: #444;
 }
 
 .cards-container {
   display: flex;
   justify-content: center;
+  align-items: stretch;
   gap: 30px;
   flex-wrap: wrap;
 }
@@ -61,4 +63,41 @@
 .santo-descricao1 {
   font-size: 1rem;
   color: white;
+}
+
+/* 📱 Mobile: Ajustes para telas menores */
+@media (max-width: 768px) {
+  .destaques-section {
+    padding: 40px 10px;
+  }
+
+  .destaques-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .santo-card {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 2/3;
+  }
+
+  .santo-content {
+    padding: 15px;
+  }
+
+  .santo-frase1 {
+    font-size: 1rem;
+  }
+
+  .santo-descricao1 {
+    font-size: 0.95rem;
+  }
 }

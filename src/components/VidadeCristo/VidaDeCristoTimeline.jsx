@@ -28,7 +28,7 @@ const etapas = [
     },
     {
         periodo: '29-30 d.C.',
-        titulo: 'Grandes Milagres\ne Expansão do Ministério',
+        titulo: 'Milagres e Expansão do Ministério',
         imagem: '/img/grandesmilagres.png',
         resumo: 'Entre seus milagres mais notáveis está a multiplicação dos pães e peixes, quando alimenta uma grande multidão com apenas alguns poucos alimentos, evidenciando sua providência divina (Mateus 14:13-21). Também realiza diversas curas, devolvendo a vista aos cegos, fazendo os paralíticos andarem e, de maneira extraordinária, ressuscita Lázaro, demonstrando seu poder sobre a vida e a morte (João 11:1-44). Em outro momento, caminha sobre as águas, revelando seu domínio absoluto sobre as forças da natureza e fortalecendo a fé dos discípulos (Mateus 14:22-33).',
         frase: '📜 "Eu sou o pão da vida; aquele que vem a mim não terá fome." (João 6:35)',
@@ -36,7 +36,7 @@ const etapas = [
     },
     {
         periodo: '30 d.C.',
-        titulo: 'Entrada Triunfal e\nÚltima Ceia',
+        titulo: 'Entrada e Última Ceia ',
         imagem: '/img/ultimaceia.png',
         resumo: 'Na sua entrada triunfal em Jerusalém, celebrada no Domingo de Ramos, Jesus é aclamado pela multidão como o rei e Messias esperado, cumprindo as profecias (Mateus 21:1-11). Durante a Última Ceia, institui a Eucaristia ao repartir o pão e o vinho como sinais de seu corpo e sangue, selando a nova e eterna aliança com a humanidade (Lucas 22:19-20).',
         frase: '📜 "Isto é o meu corpo, que é dado por vós." (Lucas 22:19)',

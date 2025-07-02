@@ -1,0 +1,9 @@
+.catequese-page h1 {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.catequese-page ul,
+.catequese-page ol {
+    font-size: 1.1rem;
+}

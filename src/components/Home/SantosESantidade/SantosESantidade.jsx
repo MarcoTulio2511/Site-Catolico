@@ -7,7 +7,7 @@ const SantosESantidade = () => {
     <section className="santos-section">
       <div className="santos-container">
         <div className="santos-right">
-          <img src="img/Santos catolicos 2_0.png" alt="Santo" />;
+          <img src="img/Santos catolicos 2_0.png" alt="Santo" />
         </div>
         <div className="santos-left">
           <h2>Santos e Santidade</h2>

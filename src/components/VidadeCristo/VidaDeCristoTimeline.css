@@ -5,26 +5,14 @@
 }
 
 .vida-cristo-wrapper .vida-container {
-    padding: 2rem;
+    padding: 2rem 1rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4rem;
 }
 
 .vida-cristo-wrapper .etapa {
-    margin-bottom: 4rem;
-}
-
-.vida-cristo-wrapper .titulo {
-    white-space: pre-line;
-    text-align: center;
-    font-weight: 800;
-    font-size: 35px;
-    color: #FE9800;
-    margin-bottom: 6px;
-    margin-top: 20px;
+    margin-bottom: 2rem;
 }
 
 .vida-cristo-wrapper .etapa-titulo {
@@ -36,11 +24,19 @@
 
 .vida-cristo-wrapper .periodo {
     font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 2rem;
     color: #FE9800;
-    margin-bottom: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.vida-cristo-wrapper .titulo {
+    white-space: pre-line;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #FE9800;
+    margin: 0.5rem 0;
 }
 
 .vida-cristo-wrapper .linha-horizontal::before {
@@ -58,52 +54,103 @@
 
 .vida-cristo-wrapper .etapa-conteudo {
     display: flex;
-    gap: 5rem;
+    gap: 2rem;
     align-items: center;
-    margin-left: 45px;
-    margin-right: 45px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1000px;
+    text-align: left;
 }
 
 .vida-cristo-wrapper .etapa-img img {
-    width: 200px;
+    width: 220px;
+    max-width: 90vw;
     height: auto;
     border-radius: 8px;
-    margin-left: 50px;
+}
+
+.vida-cristo-wrapper .etapa-resumo {
+    max-width: 600px;
+    padding: 0 1rem;
 }
 
 .vida-cristo-wrapper .etapa-resumo p {
-    font-size: 19px;
-    margin: 0.5rem 0;
+    font-size: 1.1rem;
     color: #FE9800;
-    margin-right: 50px;
+    line-height: 1.6;
 }
 
 .vida-cristo-wrapper .etapa-footer {
     display: flex;
+    flex-direction: row;
+    /* horizontal no PC */
     align-items: center;
-    justify-content: center;
     gap: 1rem;
     margin-top: 1.5rem;
+    padding: 0 1rem;
+    justify-content: center;
 }
 
 .vida-cristo-wrapper .frase {
     color: #FE9800;
     border: 2px solid orange;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     border-radius: 30px;
-    font-size: 20px;
+    font-size: 1rem;
+    text-align: center;
 }
 
 .vida-cristo-wrapper .btn-lermais {
     background-color: orange;
     color: white;
-    padding: 0.5rem 4rem;
+    padding: 0.6rem 2rem;
     border-radius: 10px;
     text-decoration: none;
     transition: background 0.3s;
-    display: inline-block;
+    font-size: 1rem;
 }
 
 .vida-cristo-wrapper .btn-lermais:hover {
     background-color: darkorange;
+}
+
+/* 📱 Mobile Adjustments */
+@media (max-width: 768px) {
+    .vida-cristo-wrapper .etapa-footer {
+        flex-direction: column;
+        /* vertical no mobile */
+    }
+
+    .vida-cristo-wrapper .etapa-conteudo {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .vida-cristo-wrapper .etapa-resumo {
+        padding: 0 0.5rem;
+    }
+
+    .vida-cristo-wrapper .titulo {
+        font-size: 1.5rem;
+    }
+
+    .vida-cristo-wrapper .periodo {
+        font-size: 1.5rem;
+    }
+
+    .vida-cristo-wrapper .etapa-resumo p {
+        font-size: 1rem;
+    }
+
+    .vida-cristo-wrapper .btn-lermais {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+
+    .vida-cristo-wrapper .linha-horizontal::before {
+        width: 60%;
+    }
 }

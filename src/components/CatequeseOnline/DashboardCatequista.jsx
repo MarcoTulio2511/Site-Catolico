@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { Link, useNavigate } from 'react-router-dom';
+import { collection, addDoc, getDocs, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { signOut } from 'firebase/auth';
+import { db, auth } from '../../firebase';
 import './DashboardCatequista.css';
 
 export function DashboardCatequista() {
     const [salas, setSalas] = useState([]);
     const [nomeSala, setNomeSala] = useState('');
     const [msg, setMsg] = useState('');
+    const [alunos, setAlunos] = useState([]);
+    const [modalAberto, setModalAberto] = useState(false);
+    const [salaSelecionada, setSalaSelecionada] = useState(null);
+    const [selecionados, setSelecionados] = useState([]);
+    const usuarioId = localStorage.getItem('usuario_id');
+    const navigate = useNavigate();
 
-    // 🔁 Buscar salas do Firestore
     const carregarSalas = async () => {
         try {
             const snapshot = await getDocs(collection(db, "salas"));
-            const lista = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            // Ordenar pela data mais recente
-            lista.sort((a, b) => b.criadoEm?.seconds - a.criadoEm?.seconds);
+            const lista = snapshot.docs
+                .map(doc => ({ id: doc.id, ...doc.data() }))
+                .filter(sala => sala.criadorId === usuarioId)
+                .sort((a, b) => b.criadoEm?.seconds - a.criadoEm?.seconds);
             setSalas(lista);
         } catch (err) {
             setMsg('Erro ao carregar salas');
@@ -32,12 +39,14 @@ export function DashboardCatequista() {
             return;
         }
 
-        const codigo = "Sala" + Math.floor(1000 + Math.random() * 9000); // Ex: Sala3874
+        const codigo = "Sala" + Math.floor(1000 + Math.random() * 9000);
         const novaSala = {
             nome: nomeSala,
-            codigo: codigo,
+            codigo,
             criadoEm: serverTimestamp(),
-            ativa: true
+            ativa: true,
+            criadorId: usuarioId,
+            alunos: []
         };
 
         try {
@@ -50,27 +59,64 @@ export function DashboardCatequista() {
         }
     };
 
+    const abrirModalAlunos = async (sala) => {
+        try {
+            const snapshot = await getDocs(collection(db, "usuarios"));
+            const lista = snapshot.docs
+                .map(doc => ({ id: doc.id, ...doc.data() }))
+                .filter(user => user.tipo === "aluno");
+            setAlunos(lista);
+            setSalaSelecionada(sala);
+            setSelecionados(sala.alunos || []);
+            setModalAberto(true);
+        } catch (err) {
+            setMsg("Erro ao buscar alunos");
+        }
+    };
+
+    const salvarAlunosNaSala = async () => {
+        try {
+            await updateDoc(doc(db, "salas", salaSelecionada.id), {
+                alunos: selecionados
+            });
+            setModalAberto(false);
+            carregarSalas();
+        } catch (err) {
+            setMsg("Erro ao salvar alunos na sala");
+        }
+    };
+
+    const toggleSelecionado = (alunoId) => {
+        setSelecionados(prev =>
+            prev.includes(alunoId)
+                ? prev.filter(id => id !== alunoId)
+                : [...prev, alunoId]
+        );
+    };
+
+    const sair = async () => {
+        await signOut(auth);
+        localStorage.clear();
+        navigate("/LoginCatequista");
+    };
+
     return (
         <div className="dashboard-catequista">
-            <h1>Bem-vindo(a), Catequista</h1>
+            <header className="cabecalho-dashboard">
+                <h1>Bem-vindo(a), Catequista</h1>
+                <button onClick={sair} className="btn-sair">Sair</button>
+            </header>
 
             <section className="criar-sala">
                 <h2>Criar nova sala de catequese</h2>
-                <input
-                    type="text"
-                    placeholder="Nome da sala (ex: Turma A)"
-                    value={nomeSala}
-                    onChange={e => setNomeSala(e.target.value)}
-                />
+                <input type="text" placeholder="Nome da sala (ex: Turma A)" value={nomeSala} onChange={e => setNomeSala(e.target.value)} />
                 <button onClick={criarSala}>Criar Sala</button>
                 {msg && <p className="mensagem">{msg}</p>}
             </section>
 
             <section className="salas-ativas">
-                <h2>Salas Ativas</h2>
-                {salas.length === 0 ? (
-                    <p>Nenhuma sala criada ainda.</p>
-                ) : (
+                <h2>Suas Salas</h2>
+                {salas.length === 0 ? <p>Nenhuma sala criada ainda.</p> : (
                     <ul>
                         {salas.map((sala, index) => (
                             <li key={sala.id || index} className="card-sala">
@@ -79,20 +125,34 @@ export function DashboardCatequista() {
                                     Código: {sala.codigo}<br />
                                     Criada em: {sala.criadoEm?.toDate?.().toLocaleString() || '---'}
                                 </div>
-                                <Link to={`/Sala/${sala.codigo}`} className="botao-entrar">
-                                    Entrar na Sala
-                                </Link>
+                                <Link to={`/Sala/${sala.codigo}`} className="botao-entrar">Entrar na Sala</Link>
+                                <button onClick={() => abrirModalAlunos(sala)} className="botao-vincular">Vincular Alunos</button>
                             </li>
                         ))}
                     </ul>
                 )}
             </section>
 
-            <section className="info-adicional">
-                <h2>Informações Adicionais</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt arcu quis nulla lacinia, ut malesuada justo commodo.</p>
-                <p>Você pode usar esta área para avisos, documentos, ou links úteis para os catequistas.</p>
-            </section>
+            {modalAberto && (
+                <div className="modal-overlay" onClick={() => setModalAberto(false)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <h2>Selecionar Alunos para: {salaSelecionada?.nome}</h2>
+                        <div className="lista-alunos">
+                            {alunos.map(aluno => (
+                                <label key={aluno.id}>
+                                    <input
+                                        type="checkbox"
+                                        checked={selecionados.includes(aluno.id)}
+                                        onChange={() => toggleSelecionado(aluno.id)}
+                                    />
+                                    {aluno.email}
+                                </label>
+                            ))}
+                        </div>
+                        <button onClick={salvarAlunosNaSala}>Salvar</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

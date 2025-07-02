@@ -1,34 +1,51 @@
-.catequese-online {
-    padding: 4rem 2rem;
+.catequese-home {
     text-align: center;
-    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    padding: 2rem;
+    margin-top: 118px;
+    margin-bottom: 118px;
+
 }
 
-.catequese-online h1 {
+.catequese-home h1 {
     font-size: 2.5rem;
-    color: #273c75;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-.catequese-online .opcoes {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.catequese-online .opcoes a {
-    display: block;
-    padding: 1rem;
-    background-color: #40739e;
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
+.subtexto {
     font-size: 1.1rem;
-    transition: background 0.3s;
+    margin-bottom: 2rem;
+    color: #555;
 }
 
-.catequese-online .opcoes a:hover {
-    background-color: #2f3640;
+.cards-catequese {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.card-catequese {
+    background: #FFF8E8;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, background 0.3s;
+}
+
+.card-catequese:hover {
+    transform: translateY(-5px);
+    background: #f0f8ff;
+}
+
+.card-catequese h3 {
+    margin: 1rem 0 0.5rem;
+}
+
+.card-catequese p {
+    font-size: 0.95rem;
+    color: #555;
 }

@@ -146,14 +146,14 @@ body {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 20px;
-    color: #c0c0c0;
+    color: #000000;
 }
 
 .santo-frase {
     font-size: 1.2rem;
     font-style: italic;
-    color: #a0a0a0;
-    border-left: 3px solid #808080;
+    color: #000000;
+    border-left: 3px solid ORANGE;
     padding-left: 15px;
     margin-left: 0;
 }
@@ -165,10 +165,9 @@ body {
     margin-top: 20px;
 }
 
-.watch-trailer-button {
-    background-color: #2a2a2a;
-    /* Cor de fundo do botão */
-    color: #e0e0e0;
+.back-button {
+    background-color: ORANGE;
+    color: #ffffff;
     border: 1px solid #606060;
     padding: 15px 30px;
     font-size: 1.1rem;
@@ -178,14 +177,14 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     display: inline-block;
-    /* Para o padding funcionar corretamente */
+    border-radius: 15px;
+    font-weight: 600;
 }
 
-.watch-trailer-button:hover {
-    background-color: #404040;
-    color: #ffd700;
-    /* Cor de destaque ao passar o mouse */
-    border-color: #ffd700;
+.back-button:hover {
+    background-color: #fe9800;
+    color: #fff6c6;
+    /* border-color: #ffd700; */
 }
 
 /* Media Queries para responsividade, se necessário */

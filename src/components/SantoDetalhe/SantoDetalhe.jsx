@@ -35,7 +35,7 @@ export default function SantoDetalhe() {
                         </div>
                     </div>
                     <div className="buttons-section"> {/* Novo div para os botões */}
-                        <Link to="/SantosESantidades" className="watch-trailer-button">
+                        <Link to="/SantosESantidades" className="back-button">
                             Ver Outros Santos
                         </Link>
                         {/* Você pode adicionar outro botão aqui se precisar */}
