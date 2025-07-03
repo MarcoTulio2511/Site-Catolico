@@ -51,7 +51,7 @@ export function DashboardAluno() {
             </header>
 
             <section className="salas-disponiveis">
-                <h2>Suas Salas Ativas (últimas 3h)</h2>
+                <h2>Suas Salas Ativas</h2>
                 {msg && <p style={{ color: 'red' }}>{msg}</p>}
                 {salas.length === 0 ? (
                     <p>Você ainda não foi adicionado a nenhuma sala ativa.</p>
