@@ -37,7 +37,7 @@ export const santosData = [
     {
         id: 'nossa-senhora-da-abadia',
         nome: "Nossa Senhora da Abadia",
-        imagem: "/img/abadia.png",
+        imagem: "/img/nossa-senhora-abadia.png",
         gradiente: "linear-gradient(to top, #4f87b3, transparent)",
         descricao: `Nossa Senhora da Abadia é uma das invocações marianas mais queridas no Brasil, especialmente em Minas Gerais, Goiás e Bahia. Sua devoção teve origem em Portugal, onde foi construída uma abadia dedicada a Maria no século XIII. No Brasil, a devoção começou com os colonizadores portugueses e rapidamente se espalhou entre os fiéis, que recorriam à Virgem Maria pedindo proteção, saúde e bênçãos para suas famílias e lavouras.\n\nA imagem de Nossa Senhora da Abadia é geralmente representada com manto azul, segurando o Menino Jesus no colo, transmitindo ternura e cuidado materno. Sua festa é celebrada em 15 de agosto, atraindo milhares de romeiros que fazem promessas e peregrinações em sinal de fé e gratidão. Ela é considerada padroeira dos pobres, dos enfermos e das comunidades rurais, sendo um símbolo de esperança, amor e devoção para seus fiéis.`,
         frase: '“Venham a mim todos que estão aflitos e sobrecarregados.”'

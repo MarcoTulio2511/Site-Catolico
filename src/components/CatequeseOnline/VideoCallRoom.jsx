@@ -8,6 +8,8 @@ export function VideoCallRoom() {
     useEffect(() => {
         const domain = 'meet.jit.si';
         const options = {
+            SHOW_PROMOTIONAL_CLOSE_PAGE: false,
+
             roomName: 'CatequeseOnline123',
             width: '100%',
             height: '100%',
@@ -17,6 +19,11 @@ export function VideoCallRoom() {
             },
             userInfo: {
                 displayName: localStorage.getItem('usuario_nome') || 'Participante'
+            },
+            configOverwrite: {
+                prejoinPageEnabled: false,
+                startWithAudioMuted: true,
+                startWithVideoMuted: false,
             }
         };
 

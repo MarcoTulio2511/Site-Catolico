@@ -1,7 +1,52 @@
+/* Estilo base do botão do accordion */
 .accordion-button {
     font-weight: bold;
+    font-size: 1.1rem;
+    background-color: #fffbe8;
+    color: #fe9800;
+    border: none;
+    box-shadow: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Quando o accordion está aberto */
+.accordion-button:not(.collapsed) {
+    background-color: #fff3d0;
+    color: #fe9800;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Hover em qualquer estado */
+.accordion-button:hover {
+    background-color: #fff3d0;
+    color: #fe9800;
+}
+
+/* Corpo do conteúdo */
 .accordion-body {
     font-size: 1.05rem;
+    background-color: #fffef9;
+    color: #333;
+}
+
+/* Remove bordas do item e melhora responsividade */
+.accordion-item {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 576px) {
+    .accordion-button {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .accordion-body {
+        font-size: 1rem;
+        padding: 1rem;
+    }
 }

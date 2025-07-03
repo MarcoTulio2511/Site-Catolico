@@ -1,5 +1,6 @@
 import React from 'react';
 import './SantosESantidade.css';
+import { Link } from 'react-router-dom';
 
 
 const SantosESantidade = () => {
@@ -14,7 +15,9 @@ const SantosESantidade = () => {
           <p>
             Explore a vida de homens e mulheres que viveram intensamente a fé cristã e se tornaram modelos de santidade para o mundo inteiro.
           </p>
-          <button className="cta-button">Conheça a História</button>
+          <Link to="/SantosESantidades">
+            <button className="cta-button">Ver Todos</button>
+          </Link>
         </div>
       </div>
     </section>

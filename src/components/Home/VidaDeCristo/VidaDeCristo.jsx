@@ -1,5 +1,7 @@
 import React from 'react';
-import './VidaDeCristo.css'; // Correção do nome do arquivo
+import './VidaDeCristo.css';
+import { Link } from 'react-router-dom';
+
 
 const VidaDeCristo = () => {
   return (
@@ -10,7 +12,9 @@ const VidaDeCristo = () => {
           <p>
             Conheça a trajetória de Jesus Cristo desde seu nascimento até a ressurreição. Uma jornada marcada por milagres, ensinamentos e amor incondicional.
           </p>
-          <button className="cta-button">Conheça a História</button>
+          <Link to="/VidadeCristo">
+            <button className="cta-button">Saiba mais</button>
+          </Link>
         </div>
         <div className="vida-right">
           <img src="/img/JESUS-FLOREST.png" alt="Santo" />

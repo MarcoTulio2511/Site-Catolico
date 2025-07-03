@@ -22,10 +22,11 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-column">
-          <h4>Instagram</h4>
-          <a href="https://instagram.com/seu_perfil" target="_blank" rel="noopener noreferrer">
-            @seu_perfil
+          <h4>Contato</h4>
+          <a href="mailto:paxaaeterna@gmail.com?subject=Contato%20do%20site&body=Olá,%20gostaria%20de%20falar%20sobre..." target="_blank" rel="noopener noreferrer">
+            paxaaeterna@gmail.com
           </a>
+
         </div>
       </div>
     </footer>

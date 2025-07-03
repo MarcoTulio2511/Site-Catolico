@@ -8,7 +8,7 @@ const etapas = [
         imagem: '/img/nascimento.png',
         resumo: 'A história da infância de Jesus começa com a anunciação do anjo Gabriel a Maria (Lucas 1:26-38), revelando que ela conceberia o Filho de Deus por obra do Espírito Santo. Em seguida, Maria e José viajam até Belém, onde Jesus nasce humildemente em uma manjedoura (Lucas 2:1-20). Após o nascimento, três sábios do Oriente, guiados por uma estrela, visitam o menino e oferecem presentes simbólicos: ouro, incenso e mirra (Mateus 2:1-12). Para escapar da perseguição do rei Herodes, a família foge para o Egito, retornando a Nazaré quando o perigo passa (Mateus 2:13-23). Já aos doze anos, Jesus é encontrado entre os doutores no Templo de Jerusalém, debatendo com sabedoria e revelando sua missão divina (Lucas 2:41-50).',
         frase: '📜 "O Verbo se fez carne e habitou entre nós." (João 1:14)',
-        link: '/Bibliaonline?livro=jo&capitulo=1&versiculo=15',
+        link: '/Bibliaonline?livro=jo&capitulo=1&versiculo=14',
     },
     {
         periodo: '27-30 d.C.',
