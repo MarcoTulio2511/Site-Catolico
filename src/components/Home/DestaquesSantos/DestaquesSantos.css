@@ -77,71 +77,76 @@
   font-weight: bold;
 }
 
-.carrossel-horizontal {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-  scrollbar-width: none;
-  justify-content: center;
-}
 
-.carrossel-horizontal::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari */
+
+.carrossel-horizontal {
+    padding: 22px 0px;
+    display: flex;
+    width: 100%;
+    max-width: 984px;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
 }
 
 .santo-card {
-  width: 260px;
-  /* define largura fixa */
-  flex: 0 0 auto;
-  /* impede que o card tente crescer ou encolher */
-  height: 440px;
-  border-radius: 25px;
-  overflow: hidden;
+  flex: 0 0 calc(100% / 3); /* Exibe 3 por vez */
+  box-sizing: border-box;
+  height: 360px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  border-radius: 16px;
   position: relative;
   cursor: pointer;
+  transition: transform 0.3s ease;
+  margin: 0 10px;
 }
 
-
 .santo-card:hover {
-  transform: translateY(-8px);
+  transform: scale(1.03);
 }
 
 .santo-gradient {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 70%;
-  background: linear-gradient(180deg, rgba(255, 248, 232, 0) 0%, rgba(0, 0, 0, 0.4) 30%, #000 100%);
-  z-index: 1;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  border-radius: 0 0 16px 16px;
 }
 
 .santo-content {
   position: absolute;
-  bottom: 0;
-  z-index: 2;
-  padding: 20px;
-  color: #FFF8E8;
-  text-align: center;
+  bottom: 20px;
+  left: 15px;
+  color: white;
+  z-index: 1;
 }
 
 .santo-frase1 {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: white;
+  font-style: italic;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .santo-descricao1 {
-  font-size: 1rem;
-  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .santo-card {
+    flex: 0 0 50%; /* 2 por vez */
+  }
+}
+
+@media (max-width: 600px) {
+  .santo-card {
+    flex: 0 0 100%; /* 1 por vez */
+  }
+}
+
 
 /* Responsivo */
 @media (max-width: 992px) {

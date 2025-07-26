@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './DestaquesSantos.css';
-import { santosData } from '../../Santos/Santos'; // ajuste o caminho se necessário
+import { santosData } from '../../Santos/Santos'; 
 import { useNavigate } from 'react-router-dom';
 
 const DestaquesSantos = () => {
@@ -9,25 +9,29 @@ const DestaquesSantos = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const intervalo = setInterval(() => {
-      if (!isPaused && carrosselRef.current) {
-        carrosselRef.current.scrollBy({
-          left: carrosselRef.current.offsetWidth / 3, // desliza uma "página"
-          behavior: 'smooth'
-        });
+  if (carrosselRef.current) {
+    carrosselRef.current.scrollLeft = 0; // 👈 força a posição inicial para o primeiro card
+  }
 
-        // loop para o início se chegar ao final
-        if (
-          carrosselRef.current.scrollLeft + carrosselRef.current.offsetWidth >=
-          carrosselRef.current.scrollWidth
-        ) {
-          carrosselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        }
+  const intervalo = setInterval(() => {
+    if (!isPaused && carrosselRef.current) {
+      carrosselRef.current.scrollBy({
+        left: carrosselRef.current.offsetWidth / 3,
+        behavior: 'smooth'
+      });
+
+      if (
+        carrosselRef.current.scrollLeft + carrosselRef.current.offsetWidth >=
+        carrosselRef.current.scrollWidth
+      ) {
+        carrosselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
       }
-    }, 5000);
+    }
+  }, 5000);
 
-    return () => clearInterval(intervalo);
-  }, [isPaused]);
+  return () => clearInterval(intervalo);
+}, [isPaused]);
+
 
   return (
     <section className="destaques-section">

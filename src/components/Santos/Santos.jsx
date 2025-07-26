@@ -49,6 +49,78 @@ export const santosData = [
         gradiente: "linear-gradient(to top, #4b0000, transparent)",
         descricao: `Carlo Acutis nasceu em 1991, em Londres, mas viveu na Itália desde pequeno. Desde muito jovem, demonstrou uma grande fé e devoção à Eucaristia, que considerava sua “estrada para o céu”. Apaixonado por tecnologia, usava seus conhecimentos para evangelizar, criando um site que documentava milagres eucarísticos ao redor do mundo. Sempre foi conhecido por sua generosidade, simplicidade e amor pelos mais necessitados.\n\nCarlo faleceu em 2006, aos 15 anos, vítima de leucemia, oferecendo seu sofrimento pela Igreja e pelo Papa. Seu testemunho de fé, amor e caridade inspira milhares de jovens no mundo todo. Foi beatificado em 2020 e é considerado o padroeiro da internet e dos jovens digitais, mostrando que é possível viver a santidade mesmo no mundo moderno e conectado.`,
         frase: '“A Eucaristia é minha rodovia para o céu.”'
+    },
+     {
+        "id": "nossa-senhora-aparecida",
+        "nome": "Nossa Senhora Aparecida",
+        "imagem": "/img/aparecida.jpg",
+        "gradiente": "linear-gradient(to top, #0a0a63, transparent)",
+        "descricao": "Nossa Senhora Aparecida é a padroeira do Brasil. Sua imagem foi encontrada por pescadores no rio Paraíba do Sul, em 1717. Desde então, inúmeros milagres são atribuídos à sua intercessão. Ela representa a fé do povo brasileiro e é celebrada com grande fervor em 12 de outubro.",
+        "frase": "“Confiai sempre, porque sou vossa Mãe.”"
+    },
+    {
+        "id": "santo-expedito",
+        "nome": "Santo Expedito",
+        "imagem": "/img/expedito.jpg",
+        "gradiente": "linear-gradient(to top, #8b0000, transparent)",
+        "descricao": "Santo Expedito é conhecido como o santo das causas urgentes. Representado como um soldado romano com uma cruz na mão, sua devoção é forte entre os que buscam respostas rápidas e auxílio imediato. Seu dia é comemorado em 19 de abril.",
+        "frase": "“Hoje é o tempo favorável, hoje é o dia da salvação.”"
+    },
+    {
+        "id": "santa-catarina-de-alexandria",
+        "nome": "Santa Catarina de Alexandria",
+        "imagem": "/img/catarina.png",
+        "gradiente": "linear-gradient(to top, #773f80, transparent)",
+        "descricao": "Santa Catarina foi uma jovem sábia e corajosa do século IV. Defendeu sua fé perante o imperador romano e se destacou por sua inteligência e oratória. É padroeira dos estudantes e filósofos, sendo celebrada em 25 de novembro.",
+        "frase": "“Cristo é meu esposo, e a Ele serei fiel até a morte.”"
+    },
+    {
+        "id": "santa-ana",
+        "nome": "Santa Ana",
+        "imagem": "/img/ana.png",
+        "gradiente": "linear-gradient(to top, #9b6c30, transparent)",
+        "descricao": "Santa Ana é mãe da Virgem Maria e avó de Jesus. É exemplo de fé, paciência e sabedoria familiar. Sua festa é celebrada em 26 de julho, sendo invocada especialmente por avós e mães cristãs.",
+        "frase": "“Educar na fé é semear para a eternidade.”"
+    },
+    {
+        "id": "sao-pedro",
+        "nome": "São Pedro",
+        "imagem": "/img/pedro.png",
+        "gradiente": "linear-gradient(to top, #223344, transparent)",
+        "descricao": "São Pedro foi o primeiro Papa da Igreja. Escolhido por Cristo como líder dos apóstolos, é símbolo de firmeza na fé. Sua festa é comemorada em 29 de junho, junto com São Paulo.",
+        "frase": "“Tu és Pedro, e sobre esta pedra edificarei minha Igreja.”"
+    },
+        {
+        "id": "santa-rita",
+        "nome": "Santa Rita de Cássia",
+        "imagem": "/img/rita.png",
+        "gradiente": "linear-gradient(to top, #000000ff, transparent)",
+        "descricao": "Santa Rita é conhecida como a santa das causas impossíveis. Viveu o matrimônio, a viuvez, a vida religiosa e a dor com paciência e fé. Sua festa é comemorada em 22 de maio.",
+        "frase": "“Para Deus nada é impossível.”"
+    },
+    {
+        "id": "sao-joao",
+        "nome": "São João Batista",
+        "imagem": "/img/joao.png",
+        "gradiente": "linear-gradient(to top, #446644, transparent)",
+        "descricao": "São João Batista preparou os caminhos do Senhor. Primo de Jesus, pregava no deserto e batizava nas águas do Jordão. É símbolo de conversão e penitência, sendo festejado em 24 de junho.",
+        "frase": "“Preparai o caminho do Senhor!”"
+    },
+    {
+        "id": "santo-antonio",
+        "nome": "Santo Antônio",
+        "imagem": "/img/antonio.png",
+        "gradiente": "linear-gradient(to top, #6e3c3c, transparent)",
+        "descricao": "Santo Antônio é conhecido como o santo casamenteiro e grande pregador do Evangelho. Possuía profunda sabedoria e humildade. É festejado em 13 de junho.",
+        "frase": "“O amor é a alma da fé, torna-a viva.”"
+    },
+    {
+        "id": "santa-edwiges",
+        "nome": "Santa Edwiges",
+        "imagem": "/img/edwiges.png",
+        "gradiente": "linear-gradient(to top, #00000, transparent)",
+        "descricao": "Santa Edwiges é padroeira dos pobres e endividados. Dedicou sua vida à caridade e à ajuda aos necessitados, fundando hospitais e conventos. Sua festa é celebrada em 16 de outubro.",
+        "frase": "“Confiai e sede generosos: Deus providenciará.”"
     }
 ];
 

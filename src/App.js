@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import VidadeCristo from './pages/VidadeCristo';
 import Santos from './pages/SantosESantidades';
+
 import SantoDetalhe from './components/SantoDetalhe/SantoDetalhe';
 import Biblia from './pages/Bibliaonline';
 import Contato from './pages/Contato';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/catequeseonline/catequistas" element={<CatequeseCatequistas />} />
           <Route path="/catequeseonline/alunos" element={<CatequeseAlunos />} />
           <Route path="/catequeseonline/faq" element={<CatequeseFAQ />} />
+<Route path="/SantoDetalhe/:id" element={<SantoDetalhe />} />
         </Routes>
       </Layout>
     </Router>

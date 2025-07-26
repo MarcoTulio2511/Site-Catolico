@@ -5,7 +5,7 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 export default function TesteFirebase() {
     const [dados, setDados] = useState([]);
 
-    // Enviar dados de teste
+    // Enviar dados de teste po firebase
     const enviarDado = async () => {
         try {
             await addDoc(collection(db, "testeFirebase"), {
@@ -18,7 +18,7 @@ export default function TesteFirebase() {
         }
     };
 
-    // Ler dados do banco
+    // essa cont lê os dados do banco
     const lerDados = async () => {
         const querySnapshot = await getDocs(collection(db, "testeFirebase"));
         const itens = [];

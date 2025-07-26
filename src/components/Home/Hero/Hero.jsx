@@ -27,7 +27,7 @@ const Hero = () => {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + length) % length);
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 7000); // muda a cada 7s
+    const interval = setInterval(nextSlide, 7000); // muda a cada 7s as imagens do hero
     return () => clearInterval(interval);
   }, []);
 

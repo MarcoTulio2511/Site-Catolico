@@ -35,7 +35,7 @@ export function VideoCallRoom() {
     const usuarioNome = localStorage.getItem('usuario_nome') || 'Participante';
 
     const voltarAoInicio = () => {
-        const tipo = localStorage.getItem('usuario_tipo'); // "aluno" ou "catequista"
+        const tipo = localStorage.getItem('usuario_tipo'); // "aluno" ou "catequista" tanto faz
         if (tipo === 'catequista') {
             navigate('/DashboardCatequista');
         } else {

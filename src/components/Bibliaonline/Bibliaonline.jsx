@@ -18,7 +18,7 @@ export default function Bibliaonline() {
     const query = useQuery();
     const livroParam = query.get('livro');
     const capituloParam = query.get('capitulo');
-    const versiculoParam = query.get('versiculo'); // novo parâmetro para versículo destacado
+    const versiculoParam = query.get('versiculo'); // novo parâmetro pra destacar os versiculos
 
     const [biblia, setBiblia] = useState([]);
     const [livroAtual, setLivroAtual] = useState('gn');
@@ -29,10 +29,10 @@ export default function Bibliaonline() {
     const [livroModal, setLivroModal] = useState(null);
     const [dropdownAberto, setDropdownAberto] = useState({ at: false, nt: false });
 
-    // Para scroll e foco no versículo destacado
+    // Para scroll e focar no versículo destacado
     const versiculoRefs = useRef([]);
 
-    // Carregar arquivo JSON da Bíblia
+    // Carrega o arquivo JSON da Bíblia
     useEffect(() => {
         fetch('/biblia/acf.json')
             .then(res => res.json())
@@ -48,7 +48,7 @@ export default function Bibliaonline() {
         return () => clearInterval(timer);
     }, []);
 
-    // Abrir automaticamente modal com params URL
+    // Abre automaticamente modal com params URL
     useEffect(() => {
         if (biblia.length === 0) return;
         if (livroParam && capituloParam) {
